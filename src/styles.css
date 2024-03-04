@@ -1,1 +1,8 @@
+@import url('../../node_modules/alertifyjs/build/css/alertify.min.css');
+@import url('../../node_modules/alertifyjs//build/css/themes/bootstrap.min.css');
+@import 'assets/tabs.css';
+
 /* You can add global styles to this file, and also import other style files */
+.ng-invalid.ng-touched{
+   border-color: red;
+}

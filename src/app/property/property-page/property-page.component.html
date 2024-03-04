@@ -1,0 +1,9 @@
+<div class="row g-3">
+  <div
+    *ngFor="let item of properties"
+    class="card col-lg-4 p-2 mx-2"
+    style="width: 15rem"
+  >
+    <app-property-card [prop]="item"></app-property-card>
+  </div>
+</div>

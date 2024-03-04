@@ -1,0 +1,43 @@
+<div class="main">
+  <div class="image-wrapper">
+    <img
+      src="../../../assets/Images/blue-house.avif"
+      class="card-img-top"
+      alt="..."
+      style="width: 225px"
+    />
+    <ul *ngIf="!hideIcons" class="list-inline text-center member-icons">
+      <li class="list-inline-item">
+        <button class="btn btn-primary" routerLink="/prop-detail/{{prop.Id}}">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+      </li>
+      <li class="list-inline-item">
+        <button class="btn btn-primary">
+          <i class="fa-solid fa-address-book"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <!-- <div class="card-body p-2">
+    <h3>{{ prop.Name }}</h3>
+    <h4>{{ prop.PType }}</h4>
+    <h4>{{ prop.Price }}</h4>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div> -->
+  <div class="card-body p-1">
+    <h1 class="mb-0"> {{prop.BHK}} BHK {{prop.PType}} </h1>
+
+    in {{prop.Name}}
+    <span *ngIf="prop.Name">,</span>
+    {{prop.City}}
+
+    <h6  class="mt-2">{{prop.FType}}
+    <span *ngIf="prop.FType !== 'Unfurnished'">Furnished</span> | Ready to Move</h6>
+
+    <hr class="mt-0 mb-2">
+
+    <h6 class="mb-0">Price: <span class="font-highlight">{{prop.Price}} USD.</span> |
+      Area:  <span class="font-highlight">{{prop.BuiltArea}} Sq Ft </span> </h6>
+  </div>
+</div>

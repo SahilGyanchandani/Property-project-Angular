@@ -1,0 +1,43 @@
+.main:hover img {
+    transform: scale(1.1);
+    /* transition-duration: 500ms; */
+    opacity: 0.8;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+
+}
+
+.main img{
+    transform:scale(1,1);
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
+    object-fit: cover;
+}
+
+.card-body h1{
+    font-family:fantasy;
+    color:#0069d9;
+    font-size: 180%;
+}
+
+.font-highlight{
+    font-style: italic;
+    color: red;
+}
+
+.member-icons{
+    position: absolute;
+    bottom: -40%;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-wrapper{
+    overflow: hidden;
+    position: relative;
+}
+
+.image-wrapper:hover .member-icons{
+    bottom: 0px;
+}

@@ -1,0 +1,665 @@
+<div class="row mb-5">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header"><h2>List Your Property</h2></div>
+      <div class="card-body">
+        <form [formGroup]="addPropertyForm">
+          <div class="tab-panel">
+            <tabset class="member-tabset" #formTabs>
+              <tab heading="Basic Info" formGroupName="basicInfoForm">
+                <div class="form-group col-12">
+                  <label for="opt"><b>I Want to</b></label>
+                  <br />
+                  <input
+                    type="radio"
+                    id="Buy"
+                    value="1"
+                    formControlName="propSelect"
+                    [checked]="true"
+                    [(ngModel)]="propertyView.SellRent"
+                  />
+                  <label class="m-2">Buy</label>
+
+                  <input
+                    type="radio"
+                    id="Sell"
+                    value="2"
+                    formControlName="propSelect"
+                    [(ngModel)]="propertyView.SellRent"
+                  />
+                  <label class="m-2">Sell</label>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addPropertyForm.get('basicInfoForm.propSelect')
+                        ?.invalid && nextClicked
+                    "
+                    >Please select one</span
+                  >
+                  <!-- <span
+                class="text-danger"
+                *ngIf="
+                  !addPropertyForm.get('propName')?.valid &&
+                  addPropertyForm.get('propName')?.touched
+                "
+              >
+                Please provide name
+              </span> -->
+                </div>
+                <div class="form-group col-12 my-1">
+                  <label for="bhk"><b>BHK</b></label>
+                  <br />
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="1"
+                    formControlName="BHK"
+                    [(ngModel)]="propertyView.BHK"
+                  />
+                  <label class="m-2">1</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="2"
+                    formControlName="BHK"
+                    [(ngModel)]="propertyView.BHK"
+                  />
+                  <label class="m-2">2</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="3"
+                    formControlName="BHK"
+                    [(ngModel)]="propertyView.BHK"
+                  />
+                  <label class="m-2">3</label>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addPropertyForm.get('basicInfoForm.BHK')?.invalid &&
+                      nextClicked
+                    "
+                    >Please select one</span
+                  >
+                  <!-- <input
+                type="text"
+                class="form-control"
+                formControlName="propType"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  !addPropertyForm.get('propType')?.valid &&
+                  addPropertyForm.get('propType')?.touched
+                "
+              >
+                Please provide type
+              </span> -->
+                </div>
+                <div class="form-group col-12 my-1">
+                  <label for="proType"><b>Property Type</b></label>
+                  <br />
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="House"
+                    formControlName="propType"
+                    [(ngModel)]="propertyView.PType"
+                  />
+                  <label class="m-2">House</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="Appartment"
+                    formControlName="propType"
+                    [(ngModel)]="propertyView.PType"
+                  />
+                  <label class="m-2">Appartment</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="Duplex"
+                    formControlName="propType"
+                    [(ngModel)]="propertyView.PType"
+                  />
+                  <label class="m-2">Duplex</label>
+                  <!-- <input
+                type="text"
+                class="form-control"
+                formControlName="propPrice"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  !addPropertyForm.get('propPrice')?.valid &&
+                  addPropertyForm.get('propPrice')?.touched
+                "
+              >
+                <span
+                  class="text-danger"
+                  *ngIf="addPropertyForm.get('propPrice')?.hasError('required')"
+                >
+                  Please provide price
+                </span>
+                <span
+                  class="text-danger"
+                  *ngIf="addPropertyForm.get('propPrice')?.hasError('pattern')"
+                >
+                  Please enter digit
+                </span>
+              </span> -->
+                </div>
+                <div class="form-group col-12 my-1">
+                  <label for="furType"><b>Furnished Type</b></label>
+                  <br />
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="Fully"
+                    formControlName="furType"
+                    [(ngModel)]="propertyView.FType"
+                  />
+                  <label class="m-2">Fully</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="Semi"
+                    formControlName="furType"
+                    [(ngModel)]="propertyView.FType"
+                  />
+                  <label class="m-2">Semi</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="Unfurnished"
+                    formControlName="furType"
+                    [(ngModel)]="propertyView.FType"
+                  />
+                  <label class="m-2">Unfurnished</label>
+                </div>
+                <div class="form-group col-12 my-1">
+                  <label for="society"><b>In Building/Society</b></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="propName"
+                    [(ngModel)]="propertyView.Name"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('basicInfoForm.propName')?.valid &&
+                      addPropertyForm.get('basicInfoForm.propName')?.touched
+                    "
+                  >
+                    Please provide Building/Society name
+                  </span>
+                </div>
+                <div class="form-group col-12 my-1">
+                  <label for="city"><b>City</b></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                    [(ngModel)]="propertyView.City"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('basicInfoForm.city')?.valid &&
+                      addPropertyForm.get('basicInfoForm.city')?.touched
+                    "
+                  >
+                    Please provide City name
+                  </span>
+                </div>
+                <div class="form-group col-12 my-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="
+                      selectTab(1, addPropertyForm.get('basicInfoForm')?.valid)
+                    "
+                    [disabled]="!addPropertyForm.get('basicInfoForm')?.valid"
+                  >
+                    Next
+                  </button>
+                </div>
+              </tab>
+              <tab heading="Pricing and Area" formGroupName="priceAreaForm">
+                <div class="form-group col-12">
+                  <label><b>Price </b>(in USD)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="propPrice"
+                    [(ngModel)]="propertyView.Price"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('priceAreaForm.propPrice')?.valid &&
+                      addPropertyForm.get('priceAreaForm.propPrice')?.touched
+                    "
+                  >
+                    Please provide Price
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Security </b>(in USD)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="security"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('priceAreaForm.security')?.valid &&
+                      addPropertyForm.get('priceAreaForm.security')?.touched
+                    "
+                  >
+                    Please provide Security
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Maintenance</b> (in USD)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="maintenance"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('priceAreaForm.maintenance')
+                        ?.valid &&
+                      addPropertyForm.get('priceAreaForm.maintenance')?.touched
+                    "
+                  >
+                    Please provide Maintenance
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Built Area</b> (in Sqr Feet)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="builtArea"
+                    [(ngModel)]="propertyView.BuiltArea"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('priceAreaForm.builtArea')?.valid &&
+                      addPropertyForm.get('priceAreaForm.builtArea')?.touched
+                    "
+                  >
+                    Please provide Built Area
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Carpet Area </b>(in Sqr Feet)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="carpetArea"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('priceAreaForm.carpetArea')?.valid &&
+                      addPropertyForm.get('priceAreaForm.carpetArea')?.touched
+                    "
+                  >
+                    Please provide Carpet Area
+                  </span>
+                </div>
+                <div class="form-group col-12 my-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="
+                      selectTab(2, addPropertyForm.get('priceAreaForm')?.valid)
+                    "
+                    [disabled]="!addPropertyForm.get('priceAreaForm')?.valid"
+                  >
+                    Next
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="selectTab(0)"
+                  >
+                    Back
+                  </button>
+                </div>
+              </tab>
+              <tab heading="Address" formGroupName="addressForm">
+                <div class="form-group col-12">
+                  <label><b>Floor</b></label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="floor"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('addressForm.floor')?.valid &&
+                      addPropertyForm.get('addressForm.floor')?.touched
+                    "
+                  >
+                    Please provide Floor Number
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Total Floor</b></label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="totalFloor"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('addressForm.totalFloor')?.valid &&
+                      addPropertyForm.get('addressForm.totalFloor')?.touched
+                    "
+                  >
+                    Please provide Total Floor Number
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Address</b></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="address"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('addressForm.address')?.valid &&
+                      addPropertyForm.get('addressForm.address')?.touched
+                    "
+                  >
+                    Please provide Address
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Landmark</b></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="landmark"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('addressForm.landmark')?.valid &&
+                      addPropertyForm.get('addressForm.landmark')?.touched
+                    "
+                  >
+                    Please provide Landmark
+                  </span>
+                </div>
+
+                <div class="form-group col-12 my-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="
+                      selectTab(3, addPropertyForm.get('addressForm')?.valid)
+                    "
+                    [disabled]="!addPropertyForm.get('addressForm')?.valid"
+                  >
+                    Next
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="selectTab(1)"
+                  >
+                    Back
+                  </button>
+                </div>
+              </tab>
+              <tab heading="Other Details" formGroupName="otherDetailForm">
+                <div
+                  class="form-group col-12"
+                  *ngIf="
+                    addPropertyForm.get('basicInfoForm.propSelect')?.value ===
+                    '1'
+                  "
+                >
+                  <label><b>Ready to Move</b></label
+                  ><br />
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="Yes"
+                    formControlName="rtm"
+                    [(ngModel)]="propertyView.RTM"
+                  />
+                  <label class="m-2">Yes</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="No"
+                    formControlName="rtm"
+                    [(ngModel)]="propertyView.RTM"
+                  />
+                  <label class="m-2">No</label>
+                </div>
+                <div class="form-group col-3">
+                  <label><b>Avaialble From</b></label>
+                  <input
+                    type="text"
+                    placeholder="Datepicker"
+                    class="form-control"
+                    formControlName="availableFrom"
+                    bsDatepicker
+                    [bsConfig]="{ containerClass: 'theme-dark-blue' }"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addPropertyForm.get('otherDetailForm.availableFrom')
+                        ?.invalid &&
+                      addPropertyForm.get('otherDetailForm.availableFrom')
+                        ?.touched
+                    "
+                  >
+                    Please select Date
+                  </span>
+                </div>
+
+                <div
+                  class="form-group col-12"
+                  *ngIf="
+                    addPropertyForm.get('basicInfoForm.propSelect')?.value ===
+                    '2'
+                  "
+                >
+                  <label><b>Age of Property</b></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="ageOfProperty"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('otherDetailForm.ageOfProperty')
+                        ?.valid &&
+                      addPropertyForm.get('otherDetailForm.ageOfProperty')
+                        ?.touched
+                    "
+                  >
+                    Please provide Age of property
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Gated Community</b></label>
+                  <br />
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="Yes"
+                    formControlName="gatedCommunity"
+                  />
+                  <label class="m-2">Yes</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="No"
+                    formControlName="gatedCommunity"
+                  />
+                  <label class="m-2">No</label>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Main Entrance</b></label>
+                  <br />
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="East"
+                    formControlName="mainEntrance"
+                  />
+                  <label class="m-2">East</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="West"
+                    formControlName="mainEntrance"
+                  />
+                  <label class="m-2">West</label>
+
+                  <input
+                    type="radio"
+                    id="Yes"
+                    value="North"
+                    formControlName="mainEntrance"
+                  />
+                  <label class="m-2">North</label>
+
+                  <input
+                    type="radio"
+                    id="No"
+                    value="South"
+                    formControlName="mainEntrance"
+                  />
+                  <label class="m-2">South</label>
+                </div>
+
+                <div class="form-group col-12">
+                  <label><b>Description</b></label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    rows="6"
+                    formControlName="description"
+                  ></textarea>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      !addPropertyForm.get('otherDetailForm.description')
+                        ?.valid &&
+                      addPropertyForm.get('otherDetailForm.description')
+                        ?.touched
+                    "
+                  >
+                    Please provide Description
+                  </span>
+                </div>
+
+                <div class="form-group col-12 my-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="
+                      selectTab(
+                        4,
+                        addPropertyForm.get('otherDetailForm')?.valid
+                      )
+                    "
+                    [disabled]="!addPropertyForm.get('otherDetailForm')?.valid"
+                  >
+                    Next
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="selectTab(2)"
+                  >
+                    Back
+                  </button>
+                </div>
+              </tab>
+              <tab heading="Photos">
+                <div class="form-group col-12">
+                  <div class="photo-control">
+                    <button class="mt-5" type="button">Upload</button> <br />
+                    This is under construction
+                  </div>
+                </div>
+                <div class="form-group col-12 my-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 my-2"
+                    (click)="selectTab(3)"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-100"
+                    (click)="addProperty()"
+                    [disabled]="!addPropertyForm.valid"
+                  >
+                    Save
+                  </button>
+                  {{addPropertyForm.value |json}}
+                </div>
+              </tab>
+            </tabset>
+          </div>
+
+          <!-- Form Values : {{ addPropertyForm.value | json }} Form Valid :
+      {{ addPropertyForm.valid }} -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card-header">
+      <h2>Property Preview</h2>
+      <div class="card col-lg-4 p-2" style="width: 15rem">
+        <app-property-card
+          [prop]="propertyView"
+          [hideIcons]="true"
+        ></app-property-card>
+      </div>
+    </div>
+  </div>
+</div>
