@@ -15,7 +15,8 @@ export class HousingService {
     return this.http.get<IProperty[]>('data/properties.json')
   }
 
-  addProperty(property: Property) {
-    localStorage.setItem('newProperty',JSON.stringify(property))
+  addProperty(property: Property, properties: Property[]) {
+    properties.push(property);
+    localStorage.setItem('newProperty', JSON.stringify(properties));
   }
 }

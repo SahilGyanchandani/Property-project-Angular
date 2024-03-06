@@ -56,13 +56,10 @@ export class UserRegisterComponent implements OnInit {
 
       if (savedUsers) {
         const existingUsers = JSON.parse(savedUsers);
-        console.log(existingUsers);
 
         const updatedUsers = [...existingUsers, userData];
-        console.log(updatedUsers);
 
         localStorage.setItem('users', JSON.stringify(updatedUsers));
-        console.log(updatedUsers);
 
         this.alertify.success('Congrats you are successfully registered');
 

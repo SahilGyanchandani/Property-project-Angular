@@ -18,19 +18,20 @@ export class PropertyPageComponent implements OnInit {
   ngOnInit() {
     this.housingService.getAllProperties().subscribe(
       data => {
-        this.properties = data.filter((res) => res.SellRent === this.SellRent);
-        const newProperty = localStorage.getItem('newProperty');
-        if (newProperty) {
-          const newPropConvert=JSON.parse(newProperty);
-          this.properties = [newPropConvert, ...this.properties]
-        }
-
-        this.route.snapshot.url.toString()
-
-      }, error => {
-        console.log(error);
+        const fetchedData = data.filter(res => res.SellRent === this.SellRent);
+  
+        const existingProperty = localStorage.getItem('newProperty');
+        const storedData = existingProperty ? JSON.parse(existingProperty) : [];
+  
+        // Combine fetched data with stored data, ensuring stolred data is only added for the matching SellRent value
+        this.properties = fetchedData.concat(storedData.filter((item: { SellRent: string; }) => item.SellRent === this.SellRent));
+  
+        console.log(this.properties); // Verify the combined data
+      },
+      error => {
+        console.error(error);
       }
-    )
+    );
   }
 
 }

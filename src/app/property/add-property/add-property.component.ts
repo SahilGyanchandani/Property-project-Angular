@@ -7,6 +7,8 @@ import { HousingService } from 'src/app/services/housing.service';
 import { IProperty } from 'src/models/IProperty';
 import { IPropertyBase } from 'src/models/IPropertyBase';
 import { Property } from 'src/models/property';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-add-property',
@@ -31,12 +33,14 @@ export class AddPropertyComponent implements OnInit {
   };
   nextClicked!: boolean;
   property = new Property();
+  properties: Property[] = []; // Array to store Property objects
 
 
   constructor(private router: Router, private formBuilder: FormBuilder, private alertify: AlertifyService, private housing: HousingService) { }
 
   ngOnInit() {
     this.initAddPropertyForm();
+    this.localStoragePropData();
   }
 
   initAddPropertyForm() {
@@ -76,10 +80,9 @@ export class AddPropertyComponent implements OnInit {
 
   addProperty() {
     if (this.addPropertyForm.valid) {
-      console.log(this.property);
       this.mapProperty();
-      console.log(this.property);
-      this.housing.addProperty(this.property);
+      console.log(this.properties);
+      this.housing.addProperty(this.property,this.properties);
       this.alertify.success('property added successfully');
 
       if (this.property.SellRent === '2') {
@@ -104,6 +107,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void {
+    this.property.Id = uuidv4();
     this.property.SellRent = this.addPropertyForm.get('basicInfoForm.propSelect')?.value;
     this.property.BHK = this.addPropertyForm.get('basicInfoForm.BHK')?.value;
     this.property.PType = this.addPropertyForm.get('basicInfoForm.propType')?.value;
@@ -133,6 +137,15 @@ export class AddPropertyComponent implements OnInit {
 
     // Set PostedOn to current date
     this.property.PostedOn = new Date().toString();
+  }
+
+  localStoragePropData() {
+    const existingProperty = localStorage.getItem('newProperty');
+    if (existingProperty) {
+      this.properties = JSON.parse(existingProperty);
+    } else {
+      this.properties = []; // Initialize with an empty array if no data exists
+    }
   }
 
 }
