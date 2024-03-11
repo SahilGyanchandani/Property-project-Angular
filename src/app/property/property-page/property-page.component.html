@@ -1,6 +1,28 @@
-<div class="row g-3">
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchText"
+        placeholder="Enter City Name"
+      />
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-primary mx-2" (click)="search()">Search</button>
+      <button class="btn btn-danger" (click)="clear()">Clear</button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-primary" (click)="toggleSortOrder()">
+        {{ sortOrder === "asc" ? "Ascending Price" : "Descending Price" }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 mt-3">
   <div
-    *ngFor="let item of properties"
+    *ngFor="let item of filteredProperties"
     class="card col-lg-4 p-2 mx-2"
     style="width: 15rem"
   >

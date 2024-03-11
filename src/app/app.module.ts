@@ -17,6 +17,8 @@ import { AuthService } from './services/Auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PropertyCitySearchPipe } from './Pipes/PropertyCitySearchpipe';
+import { PropertySortPipe } from './Pipes/property-sort.pipe';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     PropertyDetailComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    PropertyCitySearchPipe,
+    PropertySortPipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     HousingService,
     AlertifyService,
     AuthService,
-    
+    PropertyCitySearchPipe,
+    PropertySortPipe
   ],
   bootstrap: [AppComponent]
 })
